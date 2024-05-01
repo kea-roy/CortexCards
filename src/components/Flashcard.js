@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Flashcard = ({ frontText, backText }) => {
+const Flashcard = ({ index, frontText, backText, deleteHandler }) => {
     const [isFlipped, setIsFlipped] = useState(false);
     const [playAnimation, setPlayAnimation] = useState(false);
     useEffect(()=>{
@@ -18,9 +18,17 @@ const Flashcard = ({ frontText, backText }) => {
     return (
         <div className={"flashcard" + (isFlipped ? ' flipped' : '')} onClick={handleCardClick}>
             <div className={"flashcard-inner" + (playAnimation? ' playAnimation': '')}>
-                    <div className="flashcard-front">{frontText}</div>
-                    <div className="flashcard-back">{backText}</div>
+                    <div className="flashcard-front">
+                        {frontText}
+                    </div>
+                    <div className="flashcard-back">
+                        <button className="delete-button" onClick={()=> {deleteHandler(index)}}>
+                            <i className="gg-trash"></i>
+                        </button>
+                        {backText}
+                    </div>
             </div>
+            
         </div>
     );
 };

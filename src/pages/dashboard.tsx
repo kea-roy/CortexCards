@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Flashcard from '../components/Flashcard';
 import {Link} from 'react-router-dom';
-import { DocumentData, doc, onSnapshot, getFirestore, updateDoc, arrayUnion } from 'firebase/firestore';
+import { DocumentData, doc, onSnapshot, getFirestore, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import firebase from 'firebase/compat/app';
 
 type Props = {
@@ -47,6 +47,12 @@ const Dashboard = ({user, setUser}: Props) => {
         }
         setShowForm(false);
     }
+    function handleRemoveFlashcard(index: number){
+        if(user && index>=0 && index<flashcards.length){
+            const docRef = doc(db, "users", user.uid);
+            updateDoc(docRef, {flashcards: arrayRemove(flashcards[index])});
+        }
+    }
     return (
         <div>
             <header className='bodyHeader'>
@@ -60,14 +66,14 @@ const Dashboard = ({user, setUser}: Props) => {
                             <div>
                                 <div className={'singleMode-container'}>
                                     <button className={'prevButton'} onClick={()=>setCurIndex((curIndex-1+flashcards.length)%flashcards.length)} />
-                                    <Flashcard frontText={flashcards[curIndex].frontText} backText={flashcards[curIndex].backText} />
+                                    <Flashcard index={curIndex} frontText={flashcards[curIndex].frontText} backText={flashcards[curIndex].backText} deleteHandler={handleRemoveFlashcard} />
                                     <button className={'nextButton'} onClick={()=>setCurIndex((curIndex+1)%flashcards.length)} /> 
                                 </div>
                                 <div>{curIndex+1 + "/" + flashcards.length}</div>
                             </div>
                         : 
                             flashcards.map((flashcard, index) => (
-                                <Flashcard key={index} frontText={flashcard.frontText} backText={flashcard.backText} />
+                                <Flashcard index={index} frontText={flashcard.frontText} backText={flashcard.backText} deleteHandler={handleRemoveFlashcard} />
                             ))
                     )
                 }
