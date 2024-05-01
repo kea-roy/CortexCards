@@ -1,27 +1,30 @@
 .App {
   text-align: center;
+  background-color: rgb(136, 189, 245);
+  position: relative;
+  min-height: 100vh;
+}
+
+.headerAndBody{
+  padding-bottom: 20vh;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 10vmin;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: white;
+  min-height: 12vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 0 30px;
 }
 
 .App-link {
@@ -35,4 +38,314 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.signOutButton{
+  background-color: #3e4451;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: scale 0.2s;
+  font-weight: bold;
+}
+.signOutButton:hover{
+  background-color: black;
+  scale: 1.05;
+}
+
+.flashcard-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.flashcard-container>div{
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+}
+
+/* The flip card container - set the width and height to whatever you want.*/
+.flashcard {
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  perspective: 1000px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 20px;
+  text-wrap: wrap;
+  text-overflow: ellipsis;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* This container is needed to position the front and back side */
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transform-style: preserve-3d;
+}
+.flashcard-inner.playAnimation{
+  transition: transform 0.8s;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flashcard.flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+.flashcard:hover .flashcard-front{
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Position the front and back side */
+.flashcard-front, .flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flashcard-front {
+  display: flex;
+  background-color: white;
+  color: black;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s;
+  user-select: none;
+}
+
+/* Style the back side */
+.flashcard-back {
+  display: flex;
+  background-color: white;
+  color: black;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transform: rotateY(180deg);
+  transition: box-shadow 0.2s;
+  user-select: none;
+}
+
+.modal{
+  display: block;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0,0.4);
+}
+
+.form-container{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 50%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 10px;
+}
+
+.closeButton{
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  color: black;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+}
+.closeButton:after{
+  content:  "\00d7";
+  font-weight: 100;
+  font-size: 40px;
+}
+.closeButton:hover{
+  color: red;
+}
+
+.add-form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+.add-form label{
+  font-size: 10px;
+  position: relative;
+}
+.add-form input{
+  padding: 10px;
+  border: 2px solid #f1f1f1;
+  border-radius: 5px;
+  transition: box-shadow 0.2s, border 0.2s;
+  box-sizing: border-box;
+}
+.add-form input:focus{
+  outline: none;
+  border: 2px solid #282c34;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+.add-form button{
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color:#282c34;
+  color: white;
+  cursor: pointer;
+  transition: scale 0.2s;
+}
+.add-form button:hover{
+  background-color: #727272;
+  scale: 1.05;
+}
+.add-form .button-container{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.signUpForm-container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  max-width: 600px;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  margin: auto;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.singleMode-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.prevButton{
+  background-color: #282c34;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: scale 0.2s;
+}
+.prevButton:hover{
+  background-color: #727272;
+  scale: 1.05;
+}
+.prevButton::after{
+  content: "\25C4";
+}
+.nextButton{
+  background-color: #282c34;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: scale 0.2s;
+}
+.nextButton:hover{
+  background-color: #727272;
+  scale: 1.05;
+}
+.nextButton::after{
+  content:"\25BA";
+}
+
+.bodyHeader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.toggleButton{
+  background-color: #282c34;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: scale 0.2s;
+}
+.toggleButton:hover{
+  background-color: #727272;
+  scale: 1.05;
+}
+.toggleButton a{
+  color: white;
+  text-decoration: none;
+}
+
+.footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  min-height: 12vh;
+}
+a{
+  display: inline-block;
+}
+.githubLogo{
+  height: 30px;
+}
+.githubLogo:hover{
+  scale: 1.05;
+}
+.logo{
+  height: 100px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+.welcome-msg{
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
