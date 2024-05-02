@@ -44,11 +44,17 @@ const Dashboard = ({user, setUser}: Props) => {
         if (user) {
             const docRef = doc(db, "users", user.uid);
             updateDoc(docRef, { flashcards: arrayUnion(flashcardToAdd)});
+            setFormFrontText("");
+            setFormBackText("");
+            event.currentTarget.reset();
         }
         setShowForm(false);
     }
     function handleRemoveFlashcard(index: number){
         if(user && index>=0 && index<flashcards.length){
+            if(curIndex === index){
+                setCurIndex(Math.max(0,curIndex-1));
+            }
             const docRef = doc(db, "users", user.uid);
             updateDoc(docRef, {flashcards: arrayRemove(flashcards[index])});
         }
@@ -60,20 +66,20 @@ const Dashboard = ({user, setUser}: Props) => {
                 {user && <button className={'toggleButton'} onClick={()=>setShowForm(!showForm)}>Add Flashcard</button>}
             </header>
             <div className={"flashcard-container"}>
-                {flashcards && 
+                {flashcards && flashcards.length > 0 &&
                     (
                         singleMode?
                             <div>
                                 <div className={'singleMode-container'}>
                                     <button className={'prevButton'} onClick={()=>setCurIndex((curIndex-1+flashcards.length)%flashcards.length)} />
-                                    <Flashcard index={curIndex} frontText={flashcards[curIndex].frontText} backText={flashcards[curIndex].backText} deleteHandler={handleRemoveFlashcard} />
+                                    <Flashcard key={curIndex} index={curIndex} frontText={curIndex<flashcards.length? flashcards[curIndex].frontText : "You don't have any flashcards"} backText={curIndex<flashcards.length? flashcards[curIndex].backText : "You don't have any flashcards"} deleteHandler={handleRemoveFlashcard} />
                                     <button className={'nextButton'} onClick={()=>setCurIndex((curIndex+1)%flashcards.length)} /> 
                                 </div>
                                 <div>{curIndex+1 + "/" + flashcards.length}</div>
                             </div>
                         : 
                             flashcards.map((flashcard, index) => (
-                                <Flashcard index={index} frontText={flashcard.frontText} backText={flashcard.backText} deleteHandler={handleRemoveFlashcard} />
+                                <Flashcard key={index} index={index} frontText={flashcard.frontText} backText={flashcard.backText} deleteHandler={handleRemoveFlashcard} />
                             ))
                     )
                 }
