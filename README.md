@@ -14,7 +14,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/kea-roy/CortexCards">
-    <img src="https://github.com/kea-roy/CortexCards/blob/main/src/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/kea-roy/CortexCards/blob/3c8631a4b655275833f298eccf6686d59ba66df0/public/cortexcardslogo.png" alt="Logo" width="80" height="80">
   </a>
 
 <!-- PROJECT TITLE AND DESCRIPTION -->
@@ -71,7 +71,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Main Screen Shot][product-screenshot]
+![cortexcards-demo](https://github.com/kea-roy/CortexCards/assets/146872846/6450c1dd-e42a-4d56-ba0a-8f436150a655)
+
 
 During my first three months as a Software Developer at DTI, I got the chance learn many important concepts in the web development process, including actively developing new features for CUApts, a website built on Meta's React for front-end and Google's firebase firestore database for the back-end.
 
@@ -157,12 +158,14 @@ See below for several screenshots of the application.
 ### Welcome Page
 This page contains the all the information you need to know about Cortex Cards.
 
-![Welcome Page Screenshot]()
+![welcomepage](https://github.com/kea-roy/CortexCards/assets/146872846/c5b82dbf-6554-45f9-82e6-2346132c0184)
+
 
 ### Dashboard
 Once logged in, this page is where you can find, add, and delete your flashcards, all in one place.
 
-![Dashboard Page Screenshot]()
+![dashboard](https://github.com/kea-roy/CortexCards/assets/146872846/fdb776c4-086b-48fd-8305-11e9f84715df)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
