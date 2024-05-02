@@ -74,11 +74,11 @@
 ![cortexcards-demo](https://github.com/kea-roy/CortexCards/assets/146872846/6450c1dd-e42a-4d56-ba0a-8f436150a655)
 
 
-During my first three months as a Software Developer at DTI, I got the chance learn many important concepts in the web development process, including actively developing new features for CUApts, a website built on Meta's React for front-end and Google's firebase firestore database for the back-end.
+During my first three months as a Software Developer at DTI, I got the chance to learn many important concepts in the web development process, including actively developing new features for CUApts, a website built on Meta's React for front-end and Google Firebase's Firestore database for the back-end.
 
-As a hands-on learner, I decided to apply the knowledge I have learned from those three months into a new individual project. 
+As a hands-on learner, I decided to apply my newly found knowledge from those three months to a new individual project. 
 
-This flashcard app utilizes the same tech stack as CUApts to provide a seamless user design whilst also ensuring your flashcards are saved to the cloud. The web application supports email and password login, providing convenient and safe registration.
+This flashcard app utilizes the same tech stack as CUApts to provide a seamless user experience and ensure your flashcards are always available by saving them to the cloud. The web application supports email and password login, providing convenient and safe registration.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
